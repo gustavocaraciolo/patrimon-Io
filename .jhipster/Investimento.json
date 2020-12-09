@@ -1,0 +1,30 @@
+{
+  "name": "Investimento",
+  "fields": [
+    {
+      "fieldName": "investimento",
+      "fieldType": "TipoIvestimento",
+      "fieldValues": "ACOES,ALUGUEL"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "investimento",
+      "relationshipName": "user",
+      "otherEntityField": "login"
+    }
+  ],
+  "changelogDate": "20201209144008",
+  "entityTableName": "investimento",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
