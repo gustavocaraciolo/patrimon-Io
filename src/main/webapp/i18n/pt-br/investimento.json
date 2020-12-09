@@ -1,0 +1,23 @@
+{
+  "patrimonIoApp": {
+    "investimento": {
+      "home": {
+        "title": "Investimentos",
+        "createLabel": "Criar novo Investimento",
+        "createOrEditLabel": "Criar ou editar Investimento",
+        "notFound": "Nenhum Investimento encontrado"
+      },
+      "created": "Um novo Investimento foi criado com o identificador {{ param }}",
+      "updated": "Um Investimento foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Investimento foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Investimento {{ id }}?"
+      },
+      "detail": {
+        "title": "Investimento"
+      },
+      "investimento": "Investimento",
+      "user": "User"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "name": "AReceber",
+  "fields": [
+    {
+      "fieldName": "dtRecebido",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dtRecebimento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "valor",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "moeda",
+      "fieldType": "Moeda",
+      "fieldValues": "REAL,DOLAR,EURO,KWANZA"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValues": "PAGO,A_PAGAR,RECEBIDO,A_RECEBER"
+    },
+    {
+      "fieldName": "comprovantePagamento",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "aReceber",
+      "relationshipName": "imovel",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201209220337",
+  "entityTableName": "a_receber",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="aPagar">
+            <h2><span jhiTranslate="patrimonIoApp.aPagar.detail.title">A Pagar</span> {{ aPagar.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="patrimonIoApp.aPagar.dtPagamento">Dt Pagamento</span></dt>
+                <dd>
+                    <span>{{ aPagar.dtPagamento }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.aPagar.dtVencimento">Dt Vencimento</span></dt>
+                <dd>
+                    <span>{{ aPagar.dtVencimento }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.aPagar.valor">Valor</span></dt>
+                <dd>
+                    <span>{{ aPagar.valor }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.aPagar.moeda">Moeda</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'patrimonIoApp.Moeda.' + aPagar.moeda }}">{{ aPagar.moeda }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.aPagar.descricao">Descricao</span></dt>
+                <dd>
+                    <span>{{ aPagar.descricao }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.aPagar.status">Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'patrimonIoApp.Status.' + aPagar.status }}">{{ aPagar.status }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.aPagar.comprovantePagamento">Comprovante Pagamento</span></dt>
+                <dd>
+                    <div *ngIf="aPagar.comprovantePagamento">
+                        <a (click)="openFile(aPagar.comprovantePagamentoContentType, aPagar.comprovantePagamento)" jhiTranslate="entity.action.open">open</a>
+                        {{ aPagar.comprovantePagamentoContentType }}, {{ byteSize(aPagar.comprovantePagamento) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.aPagar.imovel">Imovel</span></dt>
+                <dd>
+                    {{ aPagar.imovel?.id }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/a-pagar', aPagar.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

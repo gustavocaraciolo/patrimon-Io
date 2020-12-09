@@ -1,0 +1,80 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="patrimonIoApp.imovel.home.title">Imovels</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-imovel" [routerLink]="['/imovel/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="patrimonIoApp.imovel.home.createLabel">
+            Create a new Imovel
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="imovels?.length === 0">
+        <span jhiTranslate="patrimonIoApp.imovel.home.notFound">No imovels found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="imovels && imovels.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.imovel.nome">Nome</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.imovel.projeto">Projeto</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.imovel.tabelaPreco">Tabela Preco</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.imovel.contrato">Contrato</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.imovel.user">User</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let imovel of imovels ;trackBy: trackId">
+                    <td><a [routerLink]="['/imovel', imovel.id, 'view']">{{ imovel.id }}</a></td>
+                    <td>{{ imovel.nome }}</td>
+                    <td>
+                        <a *ngIf="imovel.projeto" (click)="openFile(imovel.projetoContentType, imovel.projeto)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="imovel.projeto">{{ imovel.projetoContentType }}, {{ byteSize(imovel.projeto) }}</span>
+                    </td>
+                    <td>
+                        <a *ngIf="imovel.tabelaPreco" (click)="openFile(imovel.tabelaPrecoContentType, imovel.tabelaPreco)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="imovel.tabelaPreco">{{ imovel.tabelaPrecoContentType }}, {{ byteSize(imovel.tabelaPreco) }}</span>
+                    </td>
+                    <td>
+                        <a *ngIf="imovel.contrato" (click)="openFile(imovel.contratoContentType, imovel.contrato)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="imovel.contrato">{{ imovel.contratoContentType }}, {{ byteSize(imovel.contrato) }}</span>
+                    </td>
+                    <td>
+                        {{ imovel.user?.login }}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/imovel', imovel.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/imovel', imovel.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(imovel)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
