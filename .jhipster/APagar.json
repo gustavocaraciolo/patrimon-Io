@@ -1,0 +1,56 @@
+{
+  "name": "APagar",
+  "fields": [
+    {
+      "fieldName": "dtPagamento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dtVencimento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "valor",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "moeda",
+      "fieldType": "Moeda",
+      "fieldValues": "REAL,DOLAR,EURO,KWANZA"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValues": "PAGO,A_PAGAR,RECEBIDO,A_RECEBER"
+    },
+    {
+      "fieldName": "comprovantePagamento",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "aPagar",
+      "relationshipName": "user",
+      "otherEntityField": "login"
+    }
+  ],
+  "changelogDate": "20201209224605",
+  "entityTableName": "a_pagar",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

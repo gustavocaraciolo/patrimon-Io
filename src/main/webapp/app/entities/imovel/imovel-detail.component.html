@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="imovel">
+            <h2><span jhiTranslate="patrimonIoApp.imovel.detail.title">Imovel</span> {{ imovel.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="patrimonIoApp.imovel.nome">Nome</span></dt>
+                <dd>
+                    <span>{{ imovel.nome }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.imovel.projeto">Projeto</span></dt>
+                <dd>
+                    <div *ngIf="imovel.projeto">
+                        <a (click)="openFile(imovel.projetoContentType, imovel.projeto)" jhiTranslate="entity.action.open">open</a>
+                        {{ imovel.projetoContentType }}, {{ byteSize(imovel.projeto) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.imovel.tabelaPreco">Tabela Preco</span></dt>
+                <dd>
+                    <div *ngIf="imovel.tabelaPreco">
+                        <a (click)="openFile(imovel.tabelaPrecoContentType, imovel.tabelaPreco)" jhiTranslate="entity.action.open">open</a>
+                        {{ imovel.tabelaPrecoContentType }}, {{ byteSize(imovel.tabelaPreco) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.imovel.contrato">Contrato</span></dt>
+                <dd>
+                    <div *ngIf="imovel.contrato">
+                        <a (click)="openFile(imovel.contratoContentType, imovel.contrato)" jhiTranslate="entity.action.open">open</a>
+                        {{ imovel.contratoContentType }}, {{ byteSize(imovel.contrato) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.imovel.valorTotal">Valor Total</span></dt>
+                <dd>
+                    <span>{{ imovel.valorTotal }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.imovel.dtInicialPagamento">Dt Inicial Pagamento</span></dt>
+                <dd>
+                    <span>{{ imovel.dtInicialPagamento }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.imovel.dtFinalPagamento">Dt Final Pagamento</span></dt>
+                <dd>
+                    <span>{{ imovel.dtFinalPagamento }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.imovel.user">User</span></dt>
+                <dd>
+                    {{ imovel.user?.login }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/imovel', imovel.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

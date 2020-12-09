@@ -1,0 +1,23 @@
+{
+  "patrimonIoApp": {
+    "investimento": {
+      "home": {
+        "title": "Investimentos",
+        "createLabel": "Create a new Investimento",
+        "createOrEditLabel": "Create or edit a Investimento",
+        "notFound": "No Investimentos found"
+      },
+      "created": "A new Investimento is created with identifier {{ param }}",
+      "updated": "A Investimento is updated with identifier {{ param }}",
+      "deleted": "A Investimento is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Investimento {{ id }}?"
+      },
+      "detail": {
+        "title": "Investimento"
+      },
+      "investimento": "Investimento",
+      "user": "User"
+    }
+  }
+}

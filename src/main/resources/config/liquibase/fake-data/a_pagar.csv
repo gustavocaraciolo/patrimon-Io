@@ -1,0 +1,11 @@
+id;dt_pagamento;dt_vencimento;valor;moeda;descricao;status;comprovante_pagamento;comprovante_pagamento_content_type
+1;2020-12-09;2020-12-09;92303;KWANZA;Tasty Steel Towels Holy See (Vatican City State) Borders;A_RECEBER;../fake-data/blob/hipster.png;image/png
+2;2020-12-09;2020-12-09;61626;KWANZA;Handcrafted Frozen Tuna;A_RECEBER;../fake-data/blob/hipster.png;image/png
+3;2020-12-09;2020-12-09;86596;REAL;multi-byte connect South Dakota;A_RECEBER;../fake-data/blob/hipster.png;image/png
+4;2020-12-09;2020-12-09;38659;REAL;Decentralized;A_PAGAR;../fake-data/blob/hipster.png;image/png
+5;2020-12-09;2020-12-09;79204;DOLAR;relationships;RECEBIDO;../fake-data/blob/hipster.png;image/png
+6;2020-12-09;2020-12-09;81686;KWANZA;Manager primary Texas;PAGO;../fake-data/blob/hipster.png;image/png
+7;2020-12-09;2020-12-09;30171;EURO;compressing Home Loan Account synthesizing;A_PAGAR;../fake-data/blob/hipster.png;image/png
+8;2020-12-09;2020-12-09;21438;REAL;Health generating;PAGO;../fake-data/blob/hipster.png;image/png
+9;2020-12-09;2020-12-09;6939;KWANZA;Personal Loan Account methodical;A_PAGAR;../fake-data/blob/hipster.png;image/png
+10;2020-12-09;2020-12-09;99152;REAL;seamless synergize silver;A_RECEBER;../fake-data/blob/hipster.png;image/png

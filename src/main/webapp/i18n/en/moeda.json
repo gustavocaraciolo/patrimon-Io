@@ -1,0 +1,11 @@
+{
+  "patrimonIoApp": {
+    "Moeda": {
+      "null": "",
+      "REAL": "REAL",
+      "DOLAR": "DOLAR",
+      "EURO": "EURO",
+      "KWANZA": "KWANZA"
+    }
+  }
+}

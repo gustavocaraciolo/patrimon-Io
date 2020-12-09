@@ -1,0 +1,123 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-imovel-heading" jhiTranslate="patrimonIoApp.imovel.home.createOrEditLabel">Create or edit a Imovel</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="patrimonIoApp.imovel.nome" for="field_nome">Nome</label>
+                    <input type="text" class="form-control" name="nome" id="field_nome"
+                           formControlName="nome"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="patrimonIoApp.imovel.projeto" for="field_projeto">Projeto</label>
+                    <div>
+                        <div *ngIf="editForm.get('projeto')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('projetoContentType')!.value, editForm.get('projeto')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('projetoContentType')!.value }}, {{ byteSize(editForm.get('projeto')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({projeto: null});editForm.patchValue({projetoContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_projeto" (change)="setFileData($event, 'projeto', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="projeto" id="field_projeto"
+                           formControlName="projeto"/>
+                    <input type="hidden" class="form-control" name="projetoContentType" id="field_projetoContentType"
+                           formControlName="projetoContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="patrimonIoApp.imovel.tabelaPreco" for="field_tabelaPreco">Tabela Preco</label>
+                    <div>
+                        <div *ngIf="editForm.get('tabelaPreco')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('tabelaPrecoContentType')!.value, editForm.get('tabelaPreco')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('tabelaPrecoContentType')!.value }}, {{ byteSize(editForm.get('tabelaPreco')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({tabelaPreco: null});editForm.patchValue({tabelaPrecoContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_tabelaPreco" (change)="setFileData($event, 'tabelaPreco', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="tabelaPreco" id="field_tabelaPreco"
+                           formControlName="tabelaPreco"/>
+                    <input type="hidden" class="form-control" name="tabelaPrecoContentType" id="field_tabelaPrecoContentType"
+                           formControlName="tabelaPrecoContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="patrimonIoApp.imovel.contrato" for="field_contrato">Contrato</label>
+                    <div>
+                        <div *ngIf="editForm.get('contrato')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('contratoContentType')!.value, editForm.get('contrato')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('contratoContentType')!.value }}, {{ byteSize(editForm.get('contrato')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({contrato: null});editForm.patchValue({contratoContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_contrato" (change)="setFileData($event, 'contrato', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="contrato" id="field_contrato"
+                           formControlName="contrato"/>
+                    <input type="hidden" class="form-control" name="contratoContentType" id="field_contratoContentType"
+                           formControlName="contratoContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="patrimonIoApp.imovel.valorTotal" for="field_valorTotal">Valor Total</label>
+                    <input type="number" class="form-control" name="valorTotal" id="field_valorTotal"
+                           formControlName="valorTotal"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="patrimonIoApp.imovel.dtInicialPagamento" for="field_dtInicialPagamento">Dt Inicial Pagamento</label>
+                    <div class="input-group">
+                        <input id="field_dtInicialPagamento" type="text" class="form-control" name="dtInicialPagamento" ngbDatepicker #dtInicialPagamentoDp="ngbDatepicker" formControlName="dtInicialPagamento"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dtInicialPagamentoDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="patrimonIoApp.imovel.dtFinalPagamento" for="field_dtFinalPagamento">Dt Final Pagamento</label>
+                    <div class="input-group">
+                        <input id="field_dtFinalPagamento" type="text" class="form-control" name="dtFinalPagamento" ngbDatepicker #dtFinalPagamentoDp="ngbDatepicker" formControlName="dtFinalPagamento"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dtFinalPagamentoDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="patrimonIoApp.imovel.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="user">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
