@@ -1,0 +1,53 @@
+
+entity Imovel {
+	nome String
+    projeto AnyBlob
+    tabelaPreco AnyBlob
+    contrato AnyBlob
+    valorTotal BigDecimal
+    dtInicialPagamento LocalDate
+	dtFinalPagamento LocalDate
+}
+
+entity APagar {
+    dtPagamento LocalDate
+	dtVencimento LocalDate
+    valor BigDecimal
+    moeda Moeda
+    descricao String
+    status Status
+    comprovantePagamento AnyBlob
+}
+
+entity AReceber {
+    dtRecebido LocalDate
+	dtRecebimento LocalDate
+    valor BigDecimal
+    moeda Moeda
+    descricao String
+    status Status
+    comprovantePagamento AnyBlob
+}
+
+entity Investimento {
+	investimento TipoIvestimento
+}
+
+enum TipoIvestimento {
+    ACOES, ALUGUEL
+}
+
+enum Status {
+    PAGO, A_PAGAR, RECEBIDO, A_RECEBER
+}
+
+enum Moeda {
+    REAL, DOLAR, EURO, KWANZA
+}
+
+relationship ManyToOne {
+  Imovel{user(login)} to User
+  AReceber{user(login)} to User
+  APagar{user(login)} to User
+  Investimento{user(login)} to User
+}
