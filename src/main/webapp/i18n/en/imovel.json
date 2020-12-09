@@ -1,0 +1,24 @@
+{
+  "patrimonIoApp": {
+    "imovel": {
+      "home": {
+        "title": "Imovels",
+        "createLabel": "Create a new Imovel",
+        "createOrEditLabel": "Create or edit a Imovel",
+        "notFound": "No Imovels found"
+      },
+      "created": "A new Imovel is created with identifier {{ param }}",
+      "updated": "A Imovel is updated with identifier {{ param }}",
+      "deleted": "A Imovel is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Imovel {{ id }}?"
+      },
+      "detail": {
+        "title": "Imovel"
+      },
+      "nome": "Nome",
+      "projeto": "Projeto",
+      "user": "User"
+    }
+  }
+}

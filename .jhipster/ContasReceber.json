@@ -1,0 +1,42 @@
+{
+  "name": "ContasReceber",
+  "fields": [
+    {
+      "fieldName": "dtRecebido",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dtRecebimento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "valor",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "pago",
+      "fieldType": "Status",
+      "fieldValues": "PAGO,A_PAGAR,RECEBIDO,A_RECEBER"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "imovel",
+      "otherEntityRelationshipName": "contasReceber",
+      "relationshipName": "imovel",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201209154221",
+  "entityTableName": "contas_receber",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

@@ -1,0 +1,9 @@
+{
+  "patrimonIoApp": {
+    "TipoIvestimento": {
+      "null": "",
+      "ACOES": "ACOES",
+      "ALUGUEL": "ALUGUEL"
+    }
+  }
+}
