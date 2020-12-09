@@ -1,32 +1,23 @@
 package io.patrimon.web.rest;
 
 import io.github.jhipster.web.util.HeaderUtil;
-import io.github.jhipster.web.util.HeaderUtil;
-import io.github.jhipster.web.util.ResponseUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.micrometer.core.annotation.Timed;
 import io.patrimon.domain.APagar;
-import io.patrimon.domain.APagar;
 import io.patrimon.repository.APagarRepository;
-import io.patrimon.repository.APagarRepository;
-import io.patrimon.web.rest.errors.BadRequestAlertException;
+import io.patrimon.repository.UserRepository;
+import io.patrimon.security.AuthoritiesConstants;
+import io.patrimon.security.SecurityUtils;
 import io.patrimon.web.rest.errors.BadRequestAlertException;
 import io.patrimon.web.rest.vm.APagarPerMonth;
 import java.net.URI;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
-import java.util.List;
-import java.util.Optional;
 import java.util.Optional;
 import org.slf4j.Logger;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -50,8 +41,11 @@ public class APagarResource {
 
     private final APagarRepository aPagarRepository;
 
-    public APagarResource(APagarRepository aPagarRepository) {
+    private final UserRepository userRepository;
+
+    public APagarResource(APagarRepository aPagarRepository, UserRepository userRepository) {
         this.aPagarRepository = aPagarRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -62,10 +56,17 @@ public class APagarResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/a-pagars")
-    public ResponseEntity<APagar> createAPagar(@RequestBody APagar aPagar) throws URISyntaxException {
+    public ResponseEntity<?> createAPagar(@RequestBody APagar aPagar) throws URISyntaxException {
         log.debug("REST request to save APagar : {}", aPagar);
         if (aPagar.getId() != null) {
             throw new BadRequestAlertException("A new aPagar cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        if (aPagar.getUser() != null && !aPagar.getUser().getLogin().equals(SecurityUtils.getCurrentUserLogin().orElse(""))) {
+            return new ResponseEntity<>("error.http.403", HttpStatus.FORBIDDEN);
+        }
+        if (!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+            log.debug("No user passed in, using current user: {}", SecurityUtils.getCurrentUserLogin());
+            aPagar.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin().orElse(null)).orElse(null));
         }
         APagar result = aPagarRepository.save(aPagar);
         return ResponseEntity
@@ -122,10 +123,14 @@ public class APagarResource {
 
     @GetMapping("/a-pagar-by-month/{yearWithMonth}")
     @Timed
-    public ResponseEntity<APagarPerMonth> getPointsByMonth(@PathVariable @DateTimeFormat(pattern = "yyyy-MM") YearMonth yearWithMonth) {
+    public ResponseEntity<APagarPerMonth> getApagarByMonth(@PathVariable @DateTimeFormat(pattern = "yyyy-MM") YearMonth yearWithMonth) {
         // Get last day of the month
         LocalDate endOfMonth = yearWithMonth.atEndOfMonth();
-        List<APagar> points = aPagarRepository.findAllByDtVencimentoBetween(yearWithMonth.atDay(1), endOfMonth);
+        List<APagar> points = aPagarRepository.findAllByDtVencimentoBetweenAndUserLogin(
+            yearWithMonth.atDay(1),
+            endOfMonth,
+            SecurityUtils.getCurrentUserLogin().orElse(null)
+        );
         APagarPerMonth pointsPerMonth = new APagarPerMonth(yearWithMonth, points);
         return new ResponseEntity<>(pointsPerMonth, HttpStatus.OK);
     }

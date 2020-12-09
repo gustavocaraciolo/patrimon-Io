@@ -18,6 +18,5 @@ public interface APagarRepository extends JpaRepository<APagar, Long> {
     @Query("select aPagar from APagar aPagar where aPagar.user.login = ?#{principal.username}")
     List<APagar> findByUserIsCurrentUser();
 
-    // List<APagar> findAllByDtVencimentoBetweenAndUserLogin(LocalDate firstDate, LocalDate secondDate, String login);
-    List<APagar> findAllByDtVencimentoBetween(LocalDate firstDate, LocalDate secondDate);
+    List<APagar> findAllByDtVencimentoBetweenAndUserLogin(LocalDate firstDate, LocalDate secondDate, String login);
 }
