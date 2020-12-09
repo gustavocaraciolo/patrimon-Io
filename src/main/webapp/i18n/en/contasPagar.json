@@ -1,0 +1,25 @@
+{
+  "patrimonIoApp": {
+    "contasPagar": {
+      "home": {
+        "title": "Contas Pagars",
+        "createLabel": "Create a new Contas Pagar",
+        "createOrEditLabel": "Create or edit a Contas Pagar",
+        "notFound": "No Contas Pagars found"
+      },
+      "created": "A new Contas Pagar is created with identifier {{ param }}",
+      "updated": "A Contas Pagar is updated with identifier {{ param }}",
+      "deleted": "A Contas Pagar is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Contas Pagar {{ id }}?"
+      },
+      "detail": {
+        "title": "Contas Pagar"
+      },
+      "dtPagamento": "Dt Pagamento",
+      "dtVencimento": "Dt Vencimento",
+      "valor": "Valor",
+      "pago": "Pago"
+    }
+  }
+}

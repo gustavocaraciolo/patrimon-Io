@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="contasReceber">
+            <h2><span jhiTranslate="patrimonIoApp.contasReceber.detail.title">Contas Receber</span> {{ contasReceber.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="patrimonIoApp.contasReceber.dtRecebido">Dt Recebido</span></dt>
+                <dd>
+                    <span>{{ contasReceber.dtRecebido }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.contasReceber.dtRecebimento">Dt Recebimento</span></dt>
+                <dd>
+                    <span>{{ contasReceber.dtRecebimento }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.contasReceber.valor">Valor</span></dt>
+                <dd>
+                    <span>{{ contasReceber.valor }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.contasReceber.pago">Pago</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'patrimonIoApp.Status.' + contasReceber.pago }}">{{ contasReceber.pago }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/contas-receber', contasReceber.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

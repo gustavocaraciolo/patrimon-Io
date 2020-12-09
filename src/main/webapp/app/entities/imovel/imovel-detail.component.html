@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="imovel">
+            <h2><span jhiTranslate="patrimonIoApp.imovel.detail.title">Imovel</span> {{ imovel.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="patrimonIoApp.imovel.nome">Nome</span></dt>
+                <dd>
+                    <span>{{ imovel.nome }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.imovel.projeto">Projeto</span></dt>
+                <dd>
+                    <div *ngIf="imovel.projeto">
+                        <a (click)="openFile(imovel.projetoContentType, imovel.projeto)" jhiTranslate="entity.action.open">open</a>
+                        {{ imovel.projetoContentType }}, {{ byteSize(imovel.projeto) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.imovel.user">User</span></dt>
+                <dd>
+                    {{ imovel.user?.login }}
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.imovel.contasReceber">Contas Receber</span></dt>
+                <dd>
+                    <div *ngIf="imovel.contasReceber">
+                        <a [routerLink]="['/contas-receber', imovel.contasReceber?.id, 'view']">{{ imovel.contasReceber?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.imovel.contasPagar">Contas Pagar</span></dt>
+                <dd>
+                    <div *ngIf="imovel.contasPagar">
+                        <a [routerLink]="['/contas-pagar', imovel.contasPagar?.id, 'view']">{{ imovel.contasPagar?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/imovel', imovel.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

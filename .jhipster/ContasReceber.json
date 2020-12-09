@@ -1,0 +1,34 @@
+{
+  "name": "ContasReceber",
+  "fields": [
+    {
+      "fieldName": "dtRecebido",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dtRecebimento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "valor",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "pago",
+      "fieldType": "Status",
+      "fieldValues": "PAGO,A_PAGAR,RECEBIDO,A_RECEBER"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20201209153729",
+  "entityTableName": "contas_receber",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

@@ -1,0 +1,34 @@
+{
+  "name": "ContasPagar",
+  "fields": [
+    {
+      "fieldName": "dtPagamento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dtVencimento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "valor",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "pago",
+      "fieldType": "Status",
+      "fieldValues": "PAGO,A_PAGAR,RECEBIDO,A_RECEBER"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20201209153629",
+  "entityTableName": "contas_pagar",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

@@ -1,0 +1,25 @@
+{
+  "patrimonIoApp": {
+    "contasReceber": {
+      "home": {
+        "title": "Contas Recebers",
+        "createLabel": "Create a new Contas Receber",
+        "createOrEditLabel": "Create or edit a Contas Receber",
+        "notFound": "No Contas Recebers found"
+      },
+      "created": "A new Contas Receber is created with identifier {{ param }}",
+      "updated": "A Contas Receber is updated with identifier {{ param }}",
+      "deleted": "A Contas Receber is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Contas Receber {{ id }}?"
+      },
+      "detail": {
+        "title": "Contas Receber"
+      },
+      "dtRecebido": "Dt Recebido",
+      "dtRecebimento": "Dt Recebimento",
+      "valor": "Valor",
+      "pago": "Pago"
+    }
+  }
+}

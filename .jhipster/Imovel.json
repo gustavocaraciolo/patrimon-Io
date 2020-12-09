@@ -1,0 +1,48 @@
+{
+  "name": "Imovel",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "projeto",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "imovel",
+      "relationshipName": "user",
+      "otherEntityField": "login"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contasReceber",
+      "otherEntityRelationshipName": "imovel",
+      "relationshipName": "contasReceber",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contasPagar",
+      "otherEntityRelationshipName": "imovel",
+      "relationshipName": "contasPagar",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201209153529",
+  "entityTableName": "imovel",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
