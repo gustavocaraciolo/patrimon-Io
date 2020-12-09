@@ -1,22 +1,26 @@
 package io.patrimon.web.rest;
 
+import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.ResponseUtil;
+import io.micrometer.core.annotation.Timed;
 import io.patrimon.domain.APagar;
 import io.patrimon.repository.APagarRepository;
 import io.patrimon.web.rest.errors.BadRequestAlertException;
-
-import io.github.jhipster.web.util.HeaderUtil;
-import io.github.jhipster.web.util.ResponseUtil;
+import io.patrimon.web.rest.vm.APagarPerMonth;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.util.List;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * REST controller for managing {@link io.patrimon.domain.APagar}.
@@ -25,7 +29,6 @@ import java.util.Optional;
 @RequestMapping("/api")
 @Transactional
 public class APagarResource {
-
     private final Logger log = LoggerFactory.getLogger(APagarResource.class);
 
     private static final String ENTITY_NAME = "aPagar";
@@ -53,7 +56,8 @@ public class APagarResource {
             throw new BadRequestAlertException("A new aPagar cannot already have an ID", ENTITY_NAME, "idexists");
         }
         APagar result = aPagarRepository.save(aPagar);
-        return ResponseEntity.created(new URI("/api/a-pagars/" + result.getId()))
+        return ResponseEntity
+            .created(new URI("/api/a-pagars/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -74,7 +78,8 @@ public class APagarResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         APagar result = aPagarRepository.save(aPagar);
-        return ResponseEntity.ok()
+        return ResponseEntity
+            .ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, aPagar.getId().toString()))
             .body(result);
     }
@@ -103,6 +108,16 @@ public class APagarResource {
         return ResponseUtil.wrapOrNotFound(aPagar);
     }
 
+    @GetMapping("/a-pagar-by-month/{yearWithMonth}")
+    @Timed
+    public ResponseEntity<APagarPerMonth> getPointsByMonth(@PathVariable @DateTimeFormat(pattern = "yyyy-MM") YearMonth yearWithMonth) {
+        // Get last day of the month
+        LocalDate endOfMonth = yearWithMonth.atEndOfMonth();
+        List<APagar> points = aPagarRepository.findAllByDtVencimentoBetween(yearWithMonth.atDay(1), endOfMonth);
+        APagarPerMonth pointsPerMonth = new APagarPerMonth(yearWithMonth, points);
+        return new ResponseEntity<>(pointsPerMonth, HttpStatus.OK);
+    }
+
     /**
      * {@code DELETE  /a-pagars/:id} : delete the "id" aPagar.
      *
@@ -113,6 +128,9 @@ public class APagarResource {
     public ResponseEntity<Void> deleteAPagar(@PathVariable Long id) {
         log.debug("REST request to delete APagar : {}", id);
         aPagarRepository.deleteById(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity
+            .noContent()
+            .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
+            .build();
     }
 }

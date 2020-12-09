@@ -45,6 +45,12 @@ export class APagarService {
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
+  byMonth(month: string): Observable<EntityResponseType> {
+    return this.http
+      .get(`api/a-pagar-by-month/${month}`, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }

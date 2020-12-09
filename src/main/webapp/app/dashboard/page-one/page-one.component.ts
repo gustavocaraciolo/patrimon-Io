@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { Account } from '../../core/user/account.model';
 import { AccountService } from '../../core/auth/account.service';
+import { APagarService } from 'app/entities/a-pagar/a-pagar.service';
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -69,7 +70,12 @@ export class PageOneComponent implements OnInit, OnDestroy {
 
   account$?: Observable<Account | null>;
 
-  constructor(private accountService: AccountService, private router: Router, private eventManager: JhiEventManager) {}
+  constructor(
+    private accountService: AccountService,
+    private aPagar: APagarService,
+    private router: Router,
+    private eventManager: JhiEventManager
+  ) {}
 
   ngOnInit(): void {
     this.account$ = this.accountService.identity();
@@ -99,11 +105,32 @@ export class PageOneComponent implements OnInit, OnDestroy {
   populateCalendar(): void {
     const monthEnd = endOfMonth(this.viewDate);
     const month = format(monthEnd, 'yyyy-MM');
+
+    this.aPagar.byMonth(month).subscribe((response: any) => {
+      response.body.aPagars.forEach(item => {
+        const value = item.valor;
+        this.events.push({
+          start: startOfDay(parseISO(item.dtVencimento)),
+          end: endOfDay(parseISO(item.dtVencimento)),
+          title: 'A Pagar',
+          color: colors.green,
+          draggable: false,
+          actions: this.actions,
+          meta: {
+            id: item.id,
+            entity: 'aPagars',
+            value,
+            notes: item.moeda ? item.moeda : '',
+          },
+        });
+      });
+      this.refresh.next();
+    });
   }
 
   beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
     body.forEach(cell => {
-      cell['dayPoints'] = cell.events.filter(e => e.meta['entity'] === 'points');
+      cell['dayPoints'] = cell.events.filter(e => e.meta['entity'] === 'aPagars');
       cell['weekPoints'] = cell.events.filter(e => e.meta['entity'] === 'totalPoints');
     });
   }
