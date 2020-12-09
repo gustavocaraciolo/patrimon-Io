@@ -1,0 +1,17 @@
+
+entity Imovel {
+	nome String
+}
+
+entity Investimento {
+	investimento TipoIvestimento
+}
+
+enum TipoIvestimento {
+    ACOES, ALUGUEL
+}
+
+relationship ManyToOne {
+  Imovel{user(login)} to User
+  Investimento{user(login)} to User
+}
