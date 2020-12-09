@@ -1,0 +1,29 @@
+{
+  "patrimonIoApp": {
+    "aReceber": {
+      "home": {
+        "title": "A Recebers",
+        "createLabel": "Create a new A Receber",
+        "createOrEditLabel": "Create or edit a A Receber",
+        "notFound": "No A Recebers found"
+      },
+      "created": "A new A Receber is created with identifier {{ param }}",
+      "updated": "A A Receber is updated with identifier {{ param }}",
+      "deleted": "A A Receber is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete A Receber {{ id }}?"
+      },
+      "detail": {
+        "title": "A Receber"
+      },
+      "dtRecebido": "Dt Recebido",
+      "dtRecebimento": "Dt Recebimento",
+      "valor": "Valor",
+      "moeda": "Moeda",
+      "descricao": "Descricao",
+      "status": "Status",
+      "comprovantePagamento": "Comprovante Pagamento",
+      "imovel": "Imovel"
+    }
+  }
+}

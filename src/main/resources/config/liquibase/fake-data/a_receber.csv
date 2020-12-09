@@ -1,0 +1,11 @@
+id;dt_recebido;dt_recebimento;valor;moeda;descricao;status;comprovante_pagamento;comprovante_pagamento_content_type
+1;2020-12-09;2020-12-09;76212;EURO;Leone Regional Automated;PAGO;../fake-data/blob/hipster.png;image/png
+2;2020-12-09;2020-12-09;7417;DOLAR;Keyboard;PAGO;../fake-data/blob/hipster.png;image/png
+3;2020-12-09;2020-12-08;62671;KWANZA;Small Steel Hat;A_PAGAR;../fake-data/blob/hipster.png;image/png
+4;2020-12-09;2020-12-09;84611;DOLAR;Cross-platform Jordanian Dinar deposit;RECEBIDO;../fake-data/blob/hipster.png;image/png
+5;2020-12-08;2020-12-09;22455;KWANZA;Borders transmit Uganda Shilling;RECEBIDO;../fake-data/blob/hipster.png;image/png
+6;2020-12-09;2020-12-09;70548;DOLAR;hard drive;RECEBIDO;../fake-data/blob/hipster.png;image/png
+7;2020-12-09;2020-12-08;73335;KWANZA;functionalities;A_PAGAR;../fake-data/blob/hipster.png;image/png
+8;2020-12-09;2020-12-09;78838;KWANZA;Soft Unbranded Soft Tuna;PAGO;../fake-data/blob/hipster.png;image/png
+9;2020-12-08;2020-12-08;7684;EURO;Administrator Synchronised;A_RECEBER;../fake-data/blob/hipster.png;image/png
+10;2020-12-09;2020-12-09;22320;REAL;infrastructures Credit Card Account;A_PAGAR;../fake-data/blob/hipster.png;image/png
