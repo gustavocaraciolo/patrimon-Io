@@ -1,0 +1,38 @@
+
+entity Imovel {
+	nome String
+    projeto Blob
+}
+
+entity ContasPagar {
+    dtPagamento LocalDate
+	dtVencimento LocalDate
+    valor BigDecimal
+    pago Status
+}
+
+entity ContasReceber {
+    dtRecebido LocalDate
+	dtRecebimento LocalDate
+    valor BigDecimal
+    pago Status
+}
+
+entity Investimento {
+	investimento TipoIvestimento
+}
+
+enum TipoIvestimento {
+    ACOES, ALUGUEL
+}
+
+enum Status {
+    PAGO, A_PAGAR, RECEBIDO, A_RECEBER
+}
+
+relationship ManyToOne {
+  Imovel{user(login)} to User
+  Imovel{contasReceber} to ContasReceber
+  Imovel{contasPagar} to ContasPagar
+  Investimento{user(login)} to User
+}
