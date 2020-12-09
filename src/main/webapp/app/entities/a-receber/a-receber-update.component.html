@@ -1,0 +1,105 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-a-receber-heading" jhiTranslate="patrimonIoApp.aReceber.home.createOrEditLabel">Create or edit a A Receber</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="patrimonIoApp.aReceber.dtRecebido" for="field_dtRecebido">Dt Recebido</label>
+                    <div class="input-group">
+                        <input id="field_dtRecebido" type="text" class="form-control" name="dtRecebido" ngbDatepicker #dtRecebidoDp="ngbDatepicker" formControlName="dtRecebido"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dtRecebidoDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="patrimonIoApp.aReceber.dtRecebimento" for="field_dtRecebimento">Dt Recebimento</label>
+                    <div class="input-group">
+                        <input id="field_dtRecebimento" type="text" class="form-control" name="dtRecebimento" ngbDatepicker #dtRecebimentoDp="ngbDatepicker" formControlName="dtRecebimento"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dtRecebimentoDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="patrimonIoApp.aReceber.valor" for="field_valor">Valor</label>
+                    <input type="number" class="form-control" name="valor" id="field_valor"
+                           formControlName="valor"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="patrimonIoApp.aReceber.moeda" for="field_moeda">Moeda</label>
+                    <select class="form-control" name="moeda" formControlName="moeda" id="field_moeda">
+                        <option value="REAL">{{ 'patrimonIoApp.Moeda.REAL' | translate }}</option>
+                        <option value="DOLAR">{{ 'patrimonIoApp.Moeda.DOLAR' | translate }}</option>
+                        <option value="EURO">{{ 'patrimonIoApp.Moeda.EURO' | translate }}</option>
+                        <option value="KWANZA">{{ 'patrimonIoApp.Moeda.KWANZA' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="patrimonIoApp.aReceber.descricao" for="field_descricao">Descricao</label>
+                    <input type="text" class="form-control" name="descricao" id="field_descricao"
+                           formControlName="descricao"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="patrimonIoApp.aReceber.status" for="field_status">Status</label>
+                    <select class="form-control" name="status" formControlName="status" id="field_status">
+                        <option value="PAGO">{{ 'patrimonIoApp.Status.PAGO' | translate }}</option>
+                        <option value="A_PAGAR">{{ 'patrimonIoApp.Status.A_PAGAR' | translate }}</option>
+                        <option value="RECEBIDO">{{ 'patrimonIoApp.Status.RECEBIDO' | translate }}</option>
+                        <option value="A_RECEBER">{{ 'patrimonIoApp.Status.A_RECEBER' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="patrimonIoApp.aReceber.comprovantePagamento" for="field_comprovantePagamento">Comprovante Pagamento</label>
+                    <div>
+                        <div *ngIf="editForm.get('comprovantePagamento')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('comprovantePagamentoContentType')!.value, editForm.get('comprovantePagamento')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('comprovantePagamentoContentType')!.value }}, {{ byteSize(editForm.get('comprovantePagamento')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({comprovantePagamento: null});editForm.patchValue({comprovantePagamentoContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_comprovantePagamento" (change)="setFileData($event, 'comprovantePagamento', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="comprovantePagamento" id="field_comprovantePagamento"
+                           formControlName="comprovantePagamento"/>
+                    <input type="hidden" class="form-control" name="comprovantePagamentoContentType" id="field_comprovantePagamentoContentType"
+                           formControlName="comprovantePagamentoContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="patrimonIoApp.aReceber.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="user">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

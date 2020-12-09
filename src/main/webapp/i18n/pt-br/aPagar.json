@@ -1,0 +1,29 @@
+{
+  "patrimonIoApp": {
+    "aPagar": {
+      "home": {
+        "title": "A Pagars",
+        "createLabel": "Criar novo A Pagar",
+        "createOrEditLabel": "Criar ou editar A Pagar",
+        "notFound": "Nenhum A Pagar encontrado"
+      },
+      "created": "Um novo A Pagar foi criado com o identificador {{ param }}",
+      "updated": "Um A Pagar foi atualizado com o identificador {{ param }}",
+      "deleted": "Um A Pagar foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir A Pagar {{ id }}?"
+      },
+      "detail": {
+        "title": "A Pagar"
+      },
+      "dtPagamento": "Dt Pagamento",
+      "dtVencimento": "Dt Vencimento",
+      "valor": "Valor",
+      "moeda": "Moeda",
+      "descricao": "Descricao",
+      "status": "Status",
+      "comprovantePagamento": "Comprovante Pagamento",
+      "user": "User"
+    }
+  }
+}
