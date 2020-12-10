@@ -36,7 +36,7 @@ export class FullCalendarDemoComponent implements OnInit {
       header: {
         left: 'prev,next',
         center: 'title',
-        right: 'month,agendaWeek,agendaDay',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay',
       },
       editable: true,
     };
