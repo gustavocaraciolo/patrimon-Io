@@ -1,0 +1,35 @@
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { APP_BASE_HREF } from '@angular/common';
+
+import { PatrimonIoSharedModule } from '../../../shared/shared.module';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WizardModule } from 'primeng-extensions/components/wizard/wizard.js';
+import { ScoreService } from './service/score.service';
+import { MessageService } from 'primeng/api';
+
+import { OverlayPanelDemoComponent, overlaypanelDemoRoute } from './';
+
+const PRIMENG_STATES = [overlaypanelDemoRoute];
+
+@NgModule({
+  imports: [
+    PatrimonIoSharedModule,
+    ButtonModule,
+    OverlayPanelModule,
+    TableModule,
+    ToastModule,
+    BrowserAnimationsModule,
+    WizardModule,
+    RouterModule.forRoot(PRIMENG_STATES, { useHash: true }),
+  ],
+  declarations: [OverlayPanelDemoComponent],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/' }, ScoreService, MessageService],
+
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+})
+export class PatrimonIoOverlayPanelDemoModule {}
