@@ -7,6 +7,10 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entidades",
+        "imovel": "Imovel",
+        "aPagar": "A Pagar",
+        "aReceber": "A Receber",
+        "investimento": "Investimento",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -1,0 +1,30 @@
+{
+  "patrimonIoApp": {
+    "imovel": {
+      "home": {
+        "title": "Imovels",
+        "createLabel": "Criar novo Imovel",
+        "createOrEditLabel": "Criar ou editar Imovel",
+        "notFound": "Nenhum Imovel encontrado"
+      },
+      "created": "Um novo Imovel foi criado com o identificador {{ param }}",
+      "updated": "Um Imovel foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Imovel foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Imovel {{ id }}?"
+      },
+      "detail": {
+        "title": "Imovel"
+      },
+      "nome": "Nome",
+      "projeto": "Projeto",
+      "tabelaPreco": "Tabela Preco",
+      "contrato": "Contrato",
+      "valorTotal": "Valor Total",
+      "dtInicialPagamento": "Dt Inicial Pagamento",
+      "dtFinalPagamento": "Dt Final Pagamento",
+      "diaPreferencialPgmt": "Dia Preferencial Pgmt",
+      "user": "User"
+    }
+  }
+}

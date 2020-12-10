@@ -47,6 +47,10 @@ public class CacheConfiguration {
             createCache(cm, io.patrimon.domain.User.class.getName());
             createCache(cm, io.patrimon.domain.Authority.class.getName());
             createCache(cm, io.patrimon.domain.User.class.getName() + ".authorities");
+            createCache(cm, io.patrimon.domain.Imovel.class.getName());
+            createCache(cm, io.patrimon.domain.APagar.class.getName());
+            createCache(cm, io.patrimon.domain.AReceber.class.getName());
+            createCache(cm, io.patrimon.domain.Investimento.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
