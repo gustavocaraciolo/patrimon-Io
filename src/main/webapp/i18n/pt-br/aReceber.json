@@ -1,0 +1,29 @@
+{
+  "patrimonIoApp": {
+    "aReceber": {
+      "home": {
+        "title": "A Recebers",
+        "createLabel": "Criar novo A Receber",
+        "createOrEditLabel": "Criar ou editar A Receber",
+        "notFound": "Nenhum A Receber encontrado"
+      },
+      "created": "Um novo A Receber foi criado com o identificador {{ param }}",
+      "updated": "Um A Receber foi atualizado com o identificador {{ param }}",
+      "deleted": "Um A Receber foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir A Receber {{ id }}?"
+      },
+      "detail": {
+        "title": "A Receber"
+      },
+      "dtRecebido": "Dt Recebido",
+      "dtRecebimento": "Dt Recebimento",
+      "valor": "Valor",
+      "moeda": "Moeda",
+      "descricao": "Descricao",
+      "status": "Status",
+      "comprovantePagamento": "Comprovante Pagamento",
+      "user": "User"
+    }
+  }
+}

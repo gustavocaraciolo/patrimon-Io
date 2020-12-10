@@ -1,0 +1,80 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="patrimonIoApp.aReceber.home.title">A Recebers</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-a-receber" [routerLink]="['/a-receber/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="patrimonIoApp.aReceber.home.createLabel">
+            Create a new A Receber
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="aRecebers?.length === 0">
+        <span jhiTranslate="patrimonIoApp.aReceber.home.notFound">No aRecebers found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="aRecebers && aRecebers.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.aReceber.dtRecebido">Dt Recebido</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.aReceber.dtRecebimento">Dt Recebimento</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.aReceber.valor">Valor</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.aReceber.moeda">Moeda</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.aReceber.descricao">Descricao</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.aReceber.status">Status</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.aReceber.comprovantePagamento">Comprovante Pagamento</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.aReceber.user">User</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let aReceber of aRecebers ;trackBy: trackId">
+                    <td><a [routerLink]="['/a-receber', aReceber.id, 'view']">{{ aReceber.id }}</a></td>
+                    <td>{{ aReceber.dtRecebido | date:'mediumDate' }}</td>
+                    <td>{{ aReceber.dtRecebimento | date:'mediumDate' }}</td>
+                    <td>{{ aReceber.valor }}</td>
+                    <td jhiTranslate="{{ 'patrimonIoApp.Moeda.' + aReceber.moeda }}">{{ aReceber.moeda }}</td>
+                    <td>{{ aReceber.descricao }}</td>
+                    <td jhiTranslate="{{ 'patrimonIoApp.Status.' + aReceber.status }}">{{ aReceber.status }}</td>
+                    <td>
+                        <a *ngIf="aReceber.comprovantePagamento" (click)="openFile(aReceber.comprovantePagamentoContentType, aReceber.comprovantePagamento)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="aReceber.comprovantePagamento">{{ aReceber.comprovantePagamentoContentType }}, {{ byteSize(aReceber.comprovantePagamento) }}</span>
+                    </td>
+                    <td>
+                        {{ aReceber.user?.login }}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/a-receber', aReceber.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/a-receber', aReceber.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(aReceber)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

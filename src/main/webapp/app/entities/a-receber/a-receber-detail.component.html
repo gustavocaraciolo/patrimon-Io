@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="aReceber">
+            <h2><span jhiTranslate="patrimonIoApp.aReceber.detail.title">A Receber</span> {{ aReceber.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="patrimonIoApp.aReceber.dtRecebido">Dt Recebido</span></dt>
+                <dd>
+                    <span>{{ aReceber.dtRecebido }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.aReceber.dtRecebimento">Dt Recebimento</span></dt>
+                <dd>
+                    <span>{{ aReceber.dtRecebimento }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.aReceber.valor">Valor</span></dt>
+                <dd>
+                    <span>{{ aReceber.valor }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.aReceber.moeda">Moeda</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'patrimonIoApp.Moeda.' + aReceber.moeda }}">{{ aReceber.moeda }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.aReceber.descricao">Descricao</span></dt>
+                <dd>
+                    <span>{{ aReceber.descricao }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.aReceber.status">Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'patrimonIoApp.Status.' + aReceber.status }}">{{ aReceber.status }}</span>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.aReceber.comprovantePagamento">Comprovante Pagamento</span></dt>
+                <dd>
+                    <div *ngIf="aReceber.comprovantePagamento">
+                        <a (click)="openFile(aReceber.comprovantePagamentoContentType, aReceber.comprovantePagamento)" jhiTranslate="entity.action.open">open</a>
+                        {{ aReceber.comprovantePagamentoContentType }}, {{ byteSize(aReceber.comprovantePagamento) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="patrimonIoApp.aReceber.user">User</span></dt>
+                <dd>
+                    {{ aReceber.user?.login }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/a-receber', aReceber.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="patrimonIoApp.aPagar.home.title">A Pagars</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-a-pagar" [routerLink]="['/a-pagar/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="patrimonIoApp.aPagar.home.createLabel">
+            Create a new A Pagar
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="aPagars?.length === 0">
+        <span jhiTranslate="patrimonIoApp.aPagar.home.notFound">No aPagars found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="aPagars && aPagars.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.aPagar.dtPagamento">Dt Pagamento</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.aPagar.dtVencimento">Dt Vencimento</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.aPagar.valor">Valor</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.aPagar.moeda">Moeda</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.aPagar.descricao">Descricao</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.aPagar.status">Status</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.aPagar.comprovantePagamento">Comprovante Pagamento</span></th>
+                    <th scope="col" ><span jhiTranslate="patrimonIoApp.aPagar.user">User</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let aPagar of aPagars ;trackBy: trackId">
+                    <td><a [routerLink]="['/a-pagar', aPagar.id, 'view']">{{ aPagar.id }}</a></td>
+                    <td>{{ aPagar.dtPagamento | date:'mediumDate' }}</td>
+                    <td>{{ aPagar.dtVencimento | date:'mediumDate' }}</td>
+                    <td>{{ aPagar.valor }}</td>
+                    <td jhiTranslate="{{ 'patrimonIoApp.Moeda.' + aPagar.moeda }}">{{ aPagar.moeda }}</td>
+                    <td>{{ aPagar.descricao }}</td>
+                    <td jhiTranslate="{{ 'patrimonIoApp.Status.' + aPagar.status }}">{{ aPagar.status }}</td>
+                    <td>
+                        <a *ngIf="aPagar.comprovantePagamento" (click)="openFile(aPagar.comprovantePagamentoContentType, aPagar.comprovantePagamento)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="aPagar.comprovantePagamento">{{ aPagar.comprovantePagamentoContentType }}, {{ byteSize(aPagar.comprovantePagamento) }}</span>
+                    </td>
+                    <td>
+                        {{ aPagar.user?.login }}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/a-pagar', aPagar.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/a-pagar', aPagar.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(aPagar)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
